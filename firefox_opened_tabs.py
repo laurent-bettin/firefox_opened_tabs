@@ -8,6 +8,7 @@ import sys
 
 
 # some constants
+ENCODING = 'UTF-8'
 FF_DIR = os.environ['HOME'] + "/.mozilla/firefox/"
 SESSION_FILE = "sessionstore.js"
 PREFIX = '_FOT_'
@@ -37,7 +38,7 @@ def extract_urls(sessionstore):
     pinned_urls = []
     url_dict = {}
 
-    with open(sessionstore) as f:
+    with open(sessionstore, 'r', encoding=ENCODING) as f:
         window = None
         try:
             window = json.loads(f.read()).get("windows")[0]
@@ -136,7 +137,7 @@ def generate_output(url_dict):
 
 
 def write_file(content):
-    with open(FOT_HTML, "w") as output:
+    with open(FOT_HTML, "w", encoding=ENCODING) as output:
         output.write(content)
     print("INFO: list of opened tabs successfully written!")
 
