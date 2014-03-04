@@ -5,11 +5,13 @@ import html
 import json
 import os
 import sys
+import platform
 
 
 # some constants
 ENCODING = 'UTF-8'
-FF_DIR = os.environ['HOME'] + "/.mozilla/firefox/"
+FF_PATH = "AppData\Roaming\Mozilla\Firefox\Profiles" if platform.system() == 'Windows' else ".mozilla/firefox/"
+FF_DIR = os.path.join(os.environ['HOME'], FF_PATH)
 SESSION_FILE = "sessionstore.js"
 PREFIX = '_FOT_'
 FOT_HTML = "firefox_opened_tabs.html"
